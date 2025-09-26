@@ -112,7 +112,7 @@ spec:
       args:
         - use
         - $(params.SOURCE_ARTIFACT)=/var/workdir/source
-        - $(params.PREFETCH_ARTIFACT)=/var/workdir/cachi2
+        - $(params.PREFETCH_ARTIFACT)=/var/workdir/prefetch
       volumeMounts:
         - mountPath: /etc/pki/tls/certs/ca-custom-bundle.crt
           name: trusted-ca
@@ -174,9 +174,9 @@ spec:
 
         PREFETCH_MOUNT=""
         PREFETCH_SOURCE=""
-        if [ -d "/var/workdir/cachi2" ]; then
-          PREFETCH_MOUNT="--volume /var/workdir/cachi2:/cachi2"
-          PREFETCH_SOURCE=". /cachi2/cachi2.env &&"
+        if [ -d "/var/workdir/prefetch" ]; then
+          PREFETCH_MOUNT="--volume /var/workdir/prefetch:/prefetch"
+          PREFETCH_SOURCE=". /prefetch/prefetch.env &&"
         fi
 
         # Create the script file
