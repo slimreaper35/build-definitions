@@ -347,24 +347,24 @@ spec:
       hermeto --log-level="$LOG_LEVEL" $config_flag fetch-deps \
       $dev_pacman_flag \
       --source="$(workspaces.source.path)/source" \
-      --output="$(workspaces.source.path)/cachi2/output" \
+      --output="$(workspaces.source.path)/prefetch/output" \
       --sbom-output-type="$SBOM_TYPE" \
       "${INPUT}"
 
-      hermeto --log-level="$LOG_LEVEL" generate-env "$(workspaces.source.path)/cachi2/output" \
+      hermeto --log-level="$LOG_LEVEL" generate-env "$(workspaces.source.path)/prefetch/output" \
       --format env \
-      --for-output-dir=/cachi2/output \
-      --output "$(workspaces.source.path)/cachi2/cachi2.env"
+      --for-output-dir=/prefetch/output \
+      --output "$(workspaces.source.path)/prefetch/prefetch.env"
 
-      hermeto --log-level="$LOG_LEVEL" inject-files "$(workspaces.source.path)/cachi2/output" \
-      --for-output-dir=/cachi2/output
+      hermeto --log-level="$LOG_LEVEL" inject-files "$(workspaces.source.path)/prefetch/output" \
+      --for-output-dir=/prefetch/output
 
       # NOTE: Compatibility hack, hermeto will create a hermeto.repo when processing RPMs (1 for
-      # each architecture) which may break users expecting cachi2.repo
-      find "$(workspaces.source.path)/cachi2/output" \
+      # each architecture) which may break users expecting prefetch.repo
+      find "$(workspaces.source.path)/prefetch/output" \
         -type f \
         -name hermeto.repo \
-        -execdir mv {} cachi2.repo \;
+        -execdir mv {} prefetch.repo \;
 
       # hack: the OCI generator would delete the function since it doesn't consider trap a "usage"
       if false; then
