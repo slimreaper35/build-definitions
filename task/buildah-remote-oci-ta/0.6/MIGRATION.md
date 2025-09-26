@@ -1,14 +1,13 @@
-# Migration from 0.4 to 0.5
+# Migration from 0.5 to 0.6
 
 Version 0.5:
 
-* Fixes a regression where the SBOMs did not include the dependencies
-  identified by Hermeto (from the prefetch task), making the SBOMs less accurate
+* All legacy cachi2 mentions are replaced with a more generic prefetch word
+  * `cachi2.env` -> `prefetch.env`
+  * `cachi2.repo` -> `prefetch.repo`
+  * `/var/workdir/cachi2` -> `/var/workdir/prefetch`
+  * `$(workspaces.source.path)/cachi2/output` -> `$(workspaces.source.path)/prefetch/output`
 
 ## Action from users
 
-No action required.
-
-We consider the problem severe enough to require a new version (to raise awareness
-and to let us deprecate the broken version faster). But you don't need to make
-any manual changes.
+Unless you are somehow touching cachi2 files in your Dockerfile, no action is required.
