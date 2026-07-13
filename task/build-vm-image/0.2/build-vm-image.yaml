@@ -25,7 +25,7 @@ spec:
       type: string
     - name: IMAGE_TYPE
       type: string
-      description: The type of VM image to build, valid values are iso, qcow2, gce, vhd and raw
+      description: The type of VM image to build, valid values are ami, anaconda-iso, bootc-installer, gce, iso, qcow2, raw, vhd and vmdk
     - name: BIB_CONFIG_FILE
       default: bib.yaml
       type: string
@@ -122,8 +122,8 @@ spec:
         set -x
 
         case "${IMAGE_TYPE}" in
-          iso|qcow2|gce|vhd|raw) ;;
-          *) echo "Invalid IMAGE_TYPE: ${IMAGE_TYPE}. Must be one of: iso, qcow2, gce, vhd, raw." >&2; exit 1 ;;
+          ami|anaconda-iso|bootc-installer|gce|iso|qcow2|raw|vhd|vmdk) ;;
+          *) echo "Invalid IMAGE_TYPE: ${IMAGE_TYPE}. Must be one of: ami, anaconda-iso, bootc-installer, gce, iso, qcow2, raw, vhd, vmdk." >&2; exit 1 ;;
         esac
 
         case "${STORAGE_DRIVER}" in

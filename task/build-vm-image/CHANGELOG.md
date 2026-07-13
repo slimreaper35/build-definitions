@@ -9,7 +9,11 @@ When you make changes without bumping the version right away, document them here
 If that's not something you ever plan to do, consider removing this section.
 -->
 
-*Nothing yet.*
+### Fixed
+
+- Added `ami`, `anaconda-iso`, `bootc-installer`, and `vmdk` to `IMAGE_TYPE` validation allowlist.
+  The `ami` type was rejected despite being a valid bootc-image-builder output type, breaking AWS
+  disk image builds.
 
 ## 0.2.1
 
