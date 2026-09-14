@@ -2,8 +2,10 @@
 # These policies are meant to be applied to all of the Tasks in this repo.
 sources:
   - policy:
-      - github.com/conforma/policy//policy/lib
-      - github.com/conforma/policy//policy/stepaction
+      # Pin the policy repo to a commit that doesn't break EC checks.
+      # https://github.com/conforma/policy/commit/81c889ba791f81ebe5a4251364f7e0f045100447
+      - github.com/conforma/policy?ref=81c889ba791f81ebe5a4251364f7e0f045100447//policy/lib
+      - github.com/conforma/policy?ref=81c889ba791f81ebe5a4251364f7e0f045100447//policy/stepaction
     data:
       - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
       - github.com/release-engineering/rhtap-ec-policy//data
